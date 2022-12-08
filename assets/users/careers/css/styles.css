@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #426696;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+}
+
+h2,
+p {
+    color: #658ec6;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+h3 {
+    color: #426696;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+main {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right top, #7e4d8b, #008fc3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glass {
+    background: white;
+    min-height: 80vh;
+    width: 70%;
+    background: linear-gradient( to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    border-radius: 2rem;
+    z-index: 2;
+    /* justify-items: safe center; */
+    backdrop-filter: blur(2rem);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.glasss {
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+}
+
+.percentage {
+    font-weight: bold;
+    background: linear-gradient(to right top, #7e4d8b, #008fc3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.button {
+    align-self: center;
+    display: block;
+    width: 25%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #ddd;
+    color: black;
+}

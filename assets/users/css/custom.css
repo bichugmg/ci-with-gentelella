@@ -1,0 +1,27 @@
+body{
+	font-size: 25px; 
+	line-height: 30px;
+}
+
+.header_area .navbar .nav .nav-item .nav-link {
+	line-height: 70px !important;
+	font: 500 21px/80px "Rubik", sans-serif;
+}
+
+.single_feature h4 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.main_title p {
+    font-size: 25px;
+    
+}
+
+.main_title h2 {
+    font-size: 25px;
+}
+
+.container {
+    max-width: 900px;
+}

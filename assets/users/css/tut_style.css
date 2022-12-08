@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ccc;
+}
+
+.header {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 'header header header header header header' 'left middle middle middle middle right' 'footer footer footer footer footer footer';
+    grid-column-gap: 10px;
+    /*display: flex;*/
+}
+
+.left,
+.middle,
+.right {
+    padding: 15px;
+    border-radius: 0.5rem;
+}
+
+.left {
+    display: flex;
+    grid-area: left;
+    /*background-color: #fff;
+    opacity: 0.4;*/
+    height: 15rem;
+    width: 5rem;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+.middle {
+    grid-area: middle;
+    background-color: #fff;
+    /*width: 150%;*/
+}
+
+.right {
+    grid-area: right;
+    background-color: #fff;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 40rem;
+}
+
+
+/*@media only screen and (max-width: 991px) {
+
+    .about-fixed {
+        position: inherit;
+        width: auto;
+    }
+
+    .post-quote {
+        width: 90%;
+    }
+}
+
+*/
+
+.footer1 {
+    grid-area: footer;
+    background-color: #002347;
+    padding: 10px;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    color: #ccc;
+    display: flex;
+}
+
+.item {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+.item a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-areas: 'left header header header header header'
+        /*'left left left left left left'*/
+        'middle middle middle middle middle middle' 'right right right right right right' 'footer footer footer footer footer footer'
+        /*'left left left left left left';*/
+    }
+}
+
+h1 {
+    background-color: #008ed6;
+    padding: 15px;
+    color: #fff;
+}
+
+h3,
+h4 {
+    /*background-color: #008ed6;*/
+    padding: 10px;
+    color: #008ed6;
+}
+
+p {
+    padding: 10px;
+}
+
+
+/*registration*/
+
+.container {
+    padding: 16px;
+    background-color: white;
+    /*height: 20%;*/
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.registerbtn {
+    background-color: #002347;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+
+/*floating buttons*/
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    top: 140px;
+    left: -50px;
+}
+
+.my-float {
+    margin-top: 22px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/*icons*/
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 5px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    color: white;
+}
+
+
+/*cards*/
+
+.card {
+    /* Add shadows to create the "card" effect */
+    height: fit-content;
+    width: fit-content;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* Add some padding inside the card container */
+
+.container {
+    padding: 2px 16px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 0 10px;
+}
+
+
+/* Remove extra left and right margins, due to padding in columns */
+
+.row {
+    margin: 0 -5px;
+    align-items: center;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
