@@ -156,13 +156,13 @@ table.table>tbody>tr:hover th {
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+        <a class="nav-link" data-widget="fullscreen" href="" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+        <a class="nav-link"  href="<?php echo base_url('app/logout');?>" role="button">
+          <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
     </ul>
@@ -254,7 +254,7 @@ table.table>tbody>tr:hover th {
               <li class="nav-item">
                 <a href="<?php echo base_url('app/enrollment')?>" class="nav-link <?php if(isset($sub)&&$sub=="enr_s")echo 'active'?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Enroll </p>
+                  <p>Enroll / Disenroll </p>
                 </a>
               </li>
               <li class="nav-item">

@@ -13,7 +13,12 @@ class App_model extends CI_Model
         return $data;
       }
 
-
+      public function getProfile($user_id)
+      { 
+        $this->db->where("user_id",$user_id);
+        $res=$this->db->get("profile")->result_array();
+        return $res;
+      }
 
       public function insertStudent($data)
       {
@@ -63,7 +68,55 @@ class App_model extends CI_Model
       public function studentInfo($std_id) 
       {
         $this->db->where('std_id',$std_id);
-        $result=$this->db->get('student')->result_array();;
+        $result=$this->db->get('student')->result_array();
         return $result;
       }
+
+      public function getStudents($c_id)    
+      {
+        $this->db->from('enrollment');
+        $this->db->join('student','student.std_id=enrollment.std_id');
+        $this->db->where('enrollment.c_id',$c_id);
+        $this->db->select('student.std_id,student.name',);
+        $this->db->order_by("student.name", "asc");
+        $res=$this->db->get()->result_array();
+        return $res;
+      
+      }
+
+      public function mark_attendance($indata)
+      {
+        $this->db->insert('attendance',$indata);
+        $this->db->trans_complete();
+        return true;
+      }
+
+      public function get_at($std_id)
+      {
+        $this->db->from('attendance');
+        $this->db->join('student','student.std_id=attendance.std_id');
+        $this->db->where('attendance.std_id',$std_id);
+        $this->db->select('attendance.day,attendance.date,attendance.month,attendance.year');
+        $res['res']=$this->db->get()->result_array();
+        $this->db->where('std_id',$std_id);
+        $res['name']=$this->db->get('student')->result_array();
+        return $res;
+      }
+      public function get_at_search($postdata)
+      {
+        $qry=['attendance.std_id'=>$postdata['std_id'],'attendance.month'=>$postdata['month'],'attendance.year'=>$postdata['year']];
+        $this->db->from('attendance');
+        $this->db->join('student','student.std_id=attendance.std_id');
+        // $this->db->where('attendance.std_id',$postdata['std_id'])
+        $this->db->where($qry);
+        $this->db->select('attendance.day,attendance.date,attendance.month,attendance.year');
+        $res['res']=$this->db->get()->result_array();
+        $this->db->where('std_id',$postdata['std_id']);
+        $res['name']=$this->db->get('student')->result_array();
+        
+        // print_r( $res['res']);
+        return $res;
+        // print_r($postdata);
+      }
+
 }

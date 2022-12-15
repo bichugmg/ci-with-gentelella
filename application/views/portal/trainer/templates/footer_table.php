@@ -49,6 +49,13 @@
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    
     });
+    $(function () {
+      $("#at_sheet").DataTable({
+      "ordering": false,
+        "responsive": true, "lengthChange": false, "autoWidth": false,"paginate":false
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+   
+    });
     $('tr[name="clickrow"]').click(function() {
       var id = $(this).attr("id");
       $('input[name="std_id"]').val(id);
@@ -64,5 +71,31 @@
       $('input[name="sid"]').val(id);
       $('form[name="f3"]').submit();
     });
+    function checkedboxes()
+      {
+       var inputElems = document.getElementsByClassName("atcheck")
+        count = 0;
+
+        for (var i=0; i<inputElems.length; i++) {       
+           if (inputElems[i].checked == true){
+              count++;  
+           }
+        }
+        document.getElementById('count').value=count;
+        // $("#modal-default").html('hai');
+        $("#modal-default").modal();
+     }
+     function formsub()
+     {
+      $('form[name="form_at"]').submit();
+     }
+     function search()
+     {
+      var month=document.getElementById("month").value;
+      var year=document.getElementById("year").value;
+      $('input[id="s_month"]').val(month);
+      $('input[id="s_year"]').val(year);
+      $('form[name="f4"]').submit();
+     }
   </script>
   </body>

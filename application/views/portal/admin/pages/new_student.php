@@ -95,14 +95,10 @@
                   <input type="text" name="division" class="form-control my-colorpicker1">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">Photo</label>
+                    <label for="fee">fee</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file"name="photo" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
+                        <input type="number" name="fee" class="form-control my-colorpicker1" id="fee">
                       </div>
                     </div>
                   </div>
@@ -145,7 +141,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Course1</label>
-                            <Select name="c1" class="form-control select2">
+                            <Select name="c1" class="form-control select2" required>
                                 <option></option>
                                 <option value="1">Classical Dance</option>
                                 <option value="2">Classical Music</option>
@@ -221,7 +217,7 @@
                 <label>Pickup Point:</label>
                 <input disabled type="text" name="point" id="point" class="form-control my-colorpicker1">
               </div>
-            </div> <input type="submit">
+            </div> <input type="submit"class="btn btn-info">
                     </div></div></div></div></div>
 
                
