@@ -64,5 +64,11 @@
       $('input[name="sid"]').val(id);
       $('form[name="f3"]').submit();
     });
+
+    $('button[name="d1"]').click(function(){
+      var id = $(this).attr("id");
+      $('#filename').val(id);
+      $('#modal-secondary').modal("show");
+    })
   </script>
   </body>

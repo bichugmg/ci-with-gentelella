@@ -132,25 +132,16 @@ table.table>tbody>tr:hover th {
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge"><?php echo $this->session->userdata['hdata']['not_count'];?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
+          <span class="dropdown-item dropdown-header"><?php echo $this->session->userdata['hdata']['not_count'].' Notifications'?></span>
+          <?php
+          if ($this->session->userdata['hdata']['not_count']>0){
+          foreach($this->session->userdata['hdata']['not'] as $n)
+          echo '<div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="fas fa-envelope mr-2"></i>'.$n.'<span class="float-right text-muted text-sm">3 mins</span></a>';
+          }?>
+          
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
@@ -172,7 +163,7 @@ table.table>tbody>tr:hover th {
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?php base_url('app/home'); ?>" class="brand-link">
+    <a href="<?php echo base_url('app/home'); ?>" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="KMDC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">KMDC</span>
     </a>
@@ -185,7 +176,7 @@ table.table>tbody>tr:hover th {
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><b><?php print_r($this->session->userdata('user_name'));?></b></a>
+          <a href="" class="d-block"><b><?php print_r($this->session->userdata('user_name'));?></b></a>
         </div>
       </div>
 
@@ -207,7 +198,7 @@ table.table>tbody>tr:hover th {
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item ">
-            <a href="#" class="nav-link<?php if(isset($sec)&&$sec=="trainer")echo 'active'?>">
+            <a href="" class="nav-link<?php if(isset($sec)&&$sec=="trainer")echo 'active'?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Trainer
@@ -246,25 +237,25 @@ table.table>tbody>tr:hover th {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url("app/new_admission")?> " class="nav-link <?php if(isset($sub)&&$sub=="add_s")echo 'active'?>">
+                <a href="<?php echo base_url('app/new_admission');?> " class="nav-link <?php if(isset($sub)&&$sub=="add_s")echo 'active'?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Student</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('app/enrollment')?>" class="nav-link <?php if(isset($sub)&&$sub=="enr_s")echo 'active'?>">
+                <a href="<?php echo base_url('app/enrollment');?>" class="nav-link <?php if(isset($sub)&&$sub=="enr_s")echo 'active'?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll / Disenroll </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('app/studentlist')?>" class="nav-link <?php if(isset($sub)&&$sub=="view_s")echo 'active'?>">
+                <a href="<?php echo base_url('app/studentlist');?>" class="nav-link <?php if(isset($sub)&&$sub=="view_s")echo 'active'?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Students</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/fixed-topnav.html" class="nav-link <?php if(isset($sub)&&$sub=="att_s")echo 'active'?>">
+                <a href="<?php echo base_url('app/mark_attendance');?>" class="nav-link <?php if(isset($sub)&&$sub=="att_s")echo 'active'?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Attendace</p>
                 </a>
@@ -287,7 +278,6 @@ table.table>tbody>tr:hover th {
                   <p>Terminate </p>
                 </a>
               </li>
-              
               <li class="nav-item">
                 <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -296,6 +286,29 @@ table.table>tbody>tr:hover th {
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link <?php if(isset($sec)&&$sec=="Docs")echo 'active'?>">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+              Documents
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url("app/docs_menu")?> " class="nav-link <?php if(isset($sub)&&$sub=="upload")echo 'active'?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Upload</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url("app/docs_view")?> " class="nav-link <?php if(isset($sub)&&$sub=="view")echo 'active'?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+            </ul>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>

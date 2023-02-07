@@ -119,4 +119,25 @@ class App_model extends CI_Model
         // print_r($postdata);
       }
 
+      public function upload_doc($data,$doc_id)
+      {
+        $this->db->set($data);
+        $this->db->where('doc_id',$doc_id);
+        $this->db->update('documents');
+      }
+
+      public function getDocs()
+      {
+        $res=$this->db->get('documents')->result_array();
+        return $res;
+      }
+
+
+      public function updateDocStatus($doc) 
+      {
+        $this->db->set('status',$doc['status']);
+        $this->db->where('doc_id',$doc['doc_id']);
+        $this->db->update('documents');
+      }
+
 }

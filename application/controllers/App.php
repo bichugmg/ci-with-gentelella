@@ -56,6 +56,38 @@ class App extends CI_Controller
 
         
         if ($this->session->userdata("user_type") == 1) {
+            
+            $data=$this->App_model->getDocs();
+            $hdata['not_count']=0;
+            foreach($data as $doc)
+            {   
+                if($doc['status']=="expired")
+                    {
+                        $hdata['not_count']++;
+                        $hdata['not'][$hdata['not_count']]=$doc['doc_name']." is EXPIRED !!!";
+
+                    }
+                    else{
+                $to=new DateTime($doc['valid_to']);
+                $today=new DateTime();
+                $rem=$today->diff($to);
+                if($rem->m==0&&$rem->d==0){
+                    $doc['status']="expired";
+                    $this->App_model->updateDocStatus($doc);
+                    $hdata['not_count']++;
+                    $hdata['not'][$hdata['not_count']]=$doc['doc_name']." is EXPIRED !!!";
+                }
+                elseif($rem->m==0&&$rem->d>0){
+                    $doc['status']="expire soon";
+                    $this->App_model->updateDocStatus($doc);
+                    $hdata['not_count']++;
+                    $hdata['not'][$hdata['not_count']]=$doc['doc_name']." will EXPIRE SOON !!!";
+                }
+            }
+                
+
+            }
+            $this->session->userdata['hdata']=$hdata;
             $this->load->view("portal/admin/templates/header");
             $this->load->view("portal/admin/pages/home");
             $this->load->view("portal/admin/templates/footer");
@@ -265,10 +297,11 @@ class App extends CI_Controller
         if(empty($this->session->userdata))
             redirect(base_url());
         $postdata=$this->input->post();
-        $indata['day']=date("l");
-        $indata['date']=intval(date("d"));
-        $indata['month']=intval(date("m"));
-        $indata['year']=intval(date("Y"));
+        $indata['day']=$postdata['day'];
+        $indata['date']=$postdata['date'];
+        // $indata['month']=intval(date("m"));
+        $indata['month']=12;
+        $indata['year']=2022;
         foreach($postdata as $key=>$value)
             if(!empty($key))
                 {
@@ -331,5 +364,88 @@ class App extends CI_Controller
         $this->load->view("portal/trainer/templates/footer_table"); 
         // print_r($out);  
 
+    }
+
+
+    public function docs_menu()
+    {
+        if(empty($this->session->userdata))
+        redirect(base_url());
+        $head=['sec'=>'Docs','sub'=>'upload'];
+        $this->load->view("portal/admin/templates/header",$head);
+        $this->load->view("portal/admin/pages/docs");
+        $this->load->view("portal/admin/templates/footer_table"); 
+        
+    }
+    public function docs_upload()
+    {
+        if($this->input->post('upload') != NULL ){ 
+            $data = array(); 
+        if(!empty($_FILES['file']['name'])){ 
+            // Set preference 
+            $config['upload_path'] = 'uploads/documents'; 
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf'; 
+            $config['overwrite'] = TRUE;
+            $config['max_size'] = '5000'; // max_size in kb 
+            $config['file_name'] = $this->input->post('filename');  
+            
+            $from=new DateTime($this->input->post('from'));  
+            $to=new DateTime($this->input->post('to')); 
+            $today=new DateTime(); 
+            $rem =$today->diff($to);
+            $indata['valid_from']=$this->input->post('from');
+            $indata['valid_to']=$this->input->post('to');
+
+
+
+            // Load upload library 
+            $this->load->library('upload',$config); 
+      
+            // File upload
+            if($this->upload->do_upload('file')){ 
+               // Get data about the file
+               $uploadData = $this->upload->data(); 
+               $filename = $uploadData['file_name']; 
+               echo "<script>alert('successfully uploaded ');</script>"; 
+               
+            if($rem->m>0)
+                $indata['status']="active";
+            elseif($rem->m==0&&$rem->d>0)
+                $indata['status']="expire soon";
+            else
+                $indata['status']="expired";
+                // echo "from  : ".$from."\n"."to   : ".$to." rem    =";
+                $this->App_model->upload_doc($indata,$this->input->post('filename'));
+               echo "days";
+               print_r( $rem->d);
+               echo "months";
+               print_r($rem->m);
+               echo "status";
+               print_r($indata['status']);
+
+            }
+            else
+                echo "<script>alert(' Upload failed');</script>"; 
+         }else{ 
+            echo "<script>alert('Upload failed');</script>"; 
+         } 
+         // load view 
+         $this->docs_menu();
+      }else{ 
+         // load view 
+         $this->docs_menu();
+      
+    
+      }
+    }
+
+    public function docs_view()
+    {
+        if(empty($this->session->userdata))
+        redirect(base_url());
+        $head=['sec'=>'Docs','sub'=>'view'];
+        $this->load->view("portal/admin/templates/header",$head);
+        $this->load->view("portal/admin/pages/view_doc");
+        $this->load->view("portal/admin/templates/footer"); 
     }
 }
