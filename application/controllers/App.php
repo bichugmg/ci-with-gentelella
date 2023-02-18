@@ -13,9 +13,26 @@ class App extends CI_Controller
     {
         $this->login();
     }
+
+
+
+    /*****************************************************************************************/
+    /*************************              Login           **********************************/
+    /*****************************************************************************************/
+    
     public function login()
     {
         $this->load->view("portal/login");
+    }
+
+
+    public function logout()
+    {
+        if(empty($this->session->userdata))
+            redirect(base_url());
+        $this->session->sess_destroy();
+        redirect(base_url());
+
     }
 
     public function login_check()
@@ -103,6 +120,11 @@ class App extends CI_Controller
         }
     }
 
+
+    /*****************************************************************************************/
+    /*************************           Admission          **********************************/
+    /*****************************************************************************************/
+
     public function new_admission()
     {   
         if(empty($this->session->userdata))
@@ -147,18 +169,15 @@ class App extends CI_Controller
         }
         $sid = $this->App_model->insertStudent($indata);
         $this->enroll($sid,$courses);
-        
-       
+            
     }   
 
-    public function logout()
-    {
-        if(empty($this->session->userdata))
-            redirect(base_url());
-        $this->session->sess_destroy();
-        redirect(base_url());
 
-    }
+
+    /*****************************************************************************************/
+    /*************************       Enroll / Dienroll      **********************************/
+    /*****************************************************************************************/
+    
     public function newEnroll()
     {
         if(empty($this->session->userdata))
@@ -222,19 +241,6 @@ class App extends CI_Controller
         }
     }
 
-    public function student_detail()
-    {
-        if(empty($this->session->userdata))
-            redirect(base_url());
-        $head=['sec'=>'student','sub'=>'view_s'];
-        $postdata=$this->input->post();
-        $out['data']=$this->App_model->studentInfo($postdata['std_id']);
-        $out['enrollment']=$this->App_model->enrolledCourses($postdata['std_id']);
-        $this->load->view("portal/admin/templates/header",$head);
-        $this->load->view("portal/admin/pages/student_detail", $out);
-        $this->load->view("portal/admin/templates/footer_table");
-
-    }
 
 
     public function new_enrollment()
@@ -257,13 +263,31 @@ class App extends CI_Controller
     }
 
     
-    public function coursewise()
+
+
+
+
+    /*****************************************************************************************/
+    /*************************             View Student     **********************************/
+    /*****************************************************************************************/
+
+
+
+    public function student_detail()
     {
+        if(empty($this->session->userdata))
+            redirect(base_url());
         $head=['sec'=>'student','sub'=>'view_s'];
+        $postdata=$this->input->post();
+        $out['data']=$this->App_model->studentInfo($postdata['std_id']);
+        $out['enrollment']=$this->App_model->enrolledCourses($postdata['std_id']);
         $this->load->view("portal/admin/templates/header",$head);
-        $this->load->view("portal/admin/pages/coursewise_list");
+        $this->load->view("portal/admin/pages/student_detail", $out);
         $this->load->view("portal/admin/templates/footer_table");
+
     }
+
+
 
     public function list_student_t()
     {
@@ -276,10 +300,22 @@ class App extends CI_Controller
         $this->load->view("portal/trainer/templates/header",$head);
         $this->load->view("portal/trainer/pages/student_list",$out);
         $this->load->view("portal/trainer/templates/footer_table");
-        
-        
-        
     }
+
+    public function coursewise()
+    {
+        $head=['sec'=>'student','sub'=>'view_s'];
+        $this->load->view("portal/admin/templates/header",$head);
+        $this->load->view("portal/admin/pages/coursewise_list");
+        $this->load->view("portal/admin/templates/footer_table");
+    }
+
+
+    /*****************************************************************************************/
+    /*************************           Attendance         **********************************/
+    /*****************************************************************************************/
+
+
     public function mark_attendance()
     {
         if(empty($this->session->userdata))
@@ -299,19 +335,22 @@ class App extends CI_Controller
         $postdata=$this->input->post();
         $indata['day']=$postdata['day'];
         $indata['date']=$postdata['date'];
+        unset ($postdata['day']);
+        unset ($postdata['date']);
         // $indata['month']=intval(date("m"));
-        $indata['month']=12;
-        $indata['year']=2022;
+        $indata['month']=1;
+        $indata['year']=2023;
         foreach($postdata as $key=>$value)
             if(!empty($key))
                 {
                     $indata['std_id']=$key;
                     $indata['c_id']=$this->session->userdata['profile'][0]['c_id'];
+                    echo json_encode($indata);
                     $res=$this->App_model->mark_attendance($indata);
 
      
                 }
-        redirect(base_url('app/home'));
+         redirect(base_url('app/home'));
     }
 
 
@@ -366,7 +405,9 @@ class App extends CI_Controller
 
     }
 
-
+    /*****************************************************************************************/
+    /*****************************         Documents        **********************************/
+    /*****************************************************************************************/
     public function docs_menu()
     {
         if(empty($this->session->userdata))

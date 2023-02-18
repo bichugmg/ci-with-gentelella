@@ -29,7 +29,8 @@
                 
                 <div class="card-body">
                 <form method="post" action="upload_attendance" name="form_at">
-                  <select name="date" class="form-control select2">
+                  <select name="date" id="date" class="form-control select2" required>
+                    <option value="Select Date" >Date</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -63,8 +64,8 @@
                     <option value="31">31</option>
                   </select>
 
-                  <select name="day" class="form-control select2">
-                    <option value="Monday">Monday</option>
+                  <select name="day" id="day" required class="form-control select2" >
+                    <option value="Select Day">Day</option>
                     <option value="Tuesday">Tuesday</option>
                     <option value="Wednesday">Wednesday</option>
                     <option value="Thursday">Thursday</option>
@@ -134,7 +135,9 @@
               </button>
             </div>
             <div class="modal-body">
-              <input class=form-control id="count" Disabled>  
+             <label for="daymod">Day :</label> <input class=form-control id="daymod" name="daymod" Disabled>  
+             <label for="daymod">Date :</label><input class=form-control id="datemod" name="datemod" Disabled>  
+             <label for="count">Total :</label><input class=form-control id="count" name="count" Disabled>  
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -82,6 +82,8 @@
            }
         }
         document.getElementById('count').value=count;
+        document.getElementById('daymod').value=document.getElementById('day').value;
+        document.getElementById('datemod').value=document.getElementById('date').value;
         // $("#modal-default").html('hai');
         $("#modal-default").modal();
      }
