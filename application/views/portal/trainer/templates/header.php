@@ -173,8 +173,8 @@ table.table>tbody>tr:hover th {
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="height:initial">
     <!-- Brand Logo -->
     <a href="<?php echo base_url('app/home'); ?>" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="KMDC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">KMDC</span>
+    <img src="<?php echo base_url();?>assets/dist/img/logo.png" alt="KMDC Logo" class="brand-image " style="width:175px; height:60px;">
+      <span class="brand-text font-weight-light">&nbsp;</span>
     </a>
 
     <!-- Sidebar -->
@@ -182,7 +182,7 @@ table.table>tbody>tr:hover th {
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src="<?php echo base_url().'assets/dist/img/dp/';print_r($this->session->userdata('user_name'));?>.jpg" class="img-circle elevation-2" style="width:50px;" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><b><?php print_r($this->session->userdata('user_name'));?></b></a>

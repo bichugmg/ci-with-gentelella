@@ -76,7 +76,12 @@ class App_model extends CI_Model
       {
         $this->db->from('enrollment');
         $this->db->join('student','student.std_id=enrollment.std_id');
-        $this->db->where('enrollment.c_id',$c_id);
+        if($c_id==4)
+        {
+        $this->db->where_in('enrollment.c_id',['4','5','6']);
+        }
+        else{
+        $this->db->where('enrollment.c_id',$c_id);}
         $this->db->select('student.std_id,student.name',);
         $this->db->order_by("student.name", "asc");
         $res=$this->db->get()->result_array();

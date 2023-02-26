@@ -252,14 +252,20 @@ class App extends CI_Controller
         $out['std_id']=$this->input->post('std_id');
         // print_r($out['data']);
         $this->load->view("portal/admin/templates/header",$head);
-        $this->load->view("portal/admin/pages/new_enrollment", $out);
+        $this->load->view("portal/admin/pages/new_enrollment",$out);
         $this->load->view("portal/admin/templates/footer");
     }
 
 
     public function disenrollment()
     {
-        print_r($this->input->post());
+        if(empty($this->session->userdata))
+            redirect(base_url());
+        $head=['sec'=>'student','sub'=>'enr_s'];
+        $out['data']=$this->App_model->enrolledCourses($this->input->post('std_id'));
+        $out['std_id']=$this->input->post('std_id');
+
+
     }
 
     

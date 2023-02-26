@@ -32,7 +32,7 @@
                     <tr>
                       <th> ID</th>
                       <th>Name</th>
-                      <th>Action</th>
+                      <!-- <th>Action</th> -->
                    
                     </tr>
                     </thead>
@@ -41,12 +41,13 @@
                                 
                                 foreach($data as $a)
                                     {
-                                    echo '<tr name="clickrow" id="'.$a['std_id'].'">';
+                                    // echo '<tr name="clickrow" id="'.$a['std_id'].'">';
+                                    echo '<tr>';
                                       
                                       // echo '<tr onclick="window.location='."'#'".'>';
                                       foreach($a as $b)
                                         echo '<td>'.$b.'</td>';  
-                                      echo '<td><input type="checkbox"></td></tr>';
+                                      echo '</tr>';
                                   }
                                     ?>
                                     </tbody>
@@ -54,7 +55,7 @@
                                         <tr>
                    <th> ID</th>
                       <th>Name</th>
-                      <th>Action</th>
+                      <!-- <th>Action</th> -->
 
                     
                     </tr>
@@ -73,5 +74,5 @@
       </section>
       <!-- /.content -->
     </div>
-    <form method="post" action="student_detail" name="f1"><input style="display: none;" name="std_id"></form>
+    <form method="post" action="student_detail_trainer" name="f1"><input style="display: none;" name="std_id"></form>
     <!-- /.content-wrapper -->
