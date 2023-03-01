@@ -8,27 +8,42 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('app/home'); ?>">Home </a></li>
               <li class="breadcrumb-item active">Student Detail</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <div class="row">
+      <div class="col-md-6"> 
+        &emsp;&emsp; <button class="btn " onclick="window.location.href='<?php echo base_url().'app/studentList';?>'" style="background: rgb(63, 65, 71);" ><i style="width: 55px;color: white;" class="fa fa-arrow-left"></i></button>
+      </div>
+      <div class="col-lg-2"></div>
+      <div class="col-lg-2"></div>
+      <div class="col-lg-2">
+        <button class="btn " id="print_btn" onclick="print_detail()" style="background: rgb(63, 65, 71);" ><i style="width: 65px;color: white;" class="fa fa-print">&nbsp;&nbsp; Print</i></button>
+      </div>
+    </div>
+    <br>
     <section class="content">
+      
         <div class="container-fluid">
           <div class="row">
+
             <div class="col-12">
               
   
-              <div class="card">
+              <div class="card" id="printable">
                 <div class="card-header">
                   <h3 class="card-title"><?php echo $data[0]['name'];?></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    
+                  <table id="ex1" class="table table-bordered table-striped">
+                    <thead><tr><td></td><td>
+                      </td></tr>
+                    </thead>
                     <tbody>
                             <?php 
                                 
@@ -37,7 +52,9 @@
                                 
                                     
                             ?>
-                    </tfoot>
+                            </tbody>
+                            <tfoot></tfoot>
+                  
                   </table>
                   <div class="row">
                 <legend>Courses</legend>

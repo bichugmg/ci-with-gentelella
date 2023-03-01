@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'app';
-// $route['blog/view/post/(:any)'] = 'blog/view/$1';
+$route['404_override'] = 'Errors';
 // $route['blog/comment/(:any)/(:num)'] = 'blog/comment/$2/$1';
 // $route['blog/category/cat/(:any)/(:num)'] = 'blog/category/$2/$1';
 // $route['blog/search/tag/(:any)/(:num)'] = 'blog/search/$2/$1';

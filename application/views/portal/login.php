@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Portal | KMDC™</title>
+  <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/dist/img/icon.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap -->
     <link href="<?php echo base_url(); ?>assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -100,8 +102,8 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-graduation-cap"></i> KMDC</h1></a>
-                  <p>© KMDC™</p>
+                <img src="<?php echo base_url();?>assets/dist/img/logo.png" alt="KMDC Logo" class="brand-image " style="width:175px; height:60px;">
+                 <br><br> <p>© KMDC™</p>
                 </div>
               </div>
             </form>

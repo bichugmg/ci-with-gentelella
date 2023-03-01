@@ -1,16 +1,12 @@
 <footer class="main-footer">
-      <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.1.0
-      </div>
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.2.0
+    </div>
+  </footer>
   
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-  </div>
+    <!-- Control Sidebebar -->
   <script src="<?php echo base_url();?>/assets/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url();?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -49,6 +45,14 @@
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    
     });
+    $(function () {
+      $("#ex1").DataTable({
+      "ordering": false,
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["excel", "pdf", "print"]
+      }).buttons().container().appendTo('#ex1_wrapper .col-md-6:eq(0)');
+   
+    });
     $('tr[name="clickrow"]').click(function() {
       var id = $(this).attr("id");
       $('input[name="std_id"]').val(id);
@@ -69,6 +73,27 @@
       var id = $(this).attr("id");
       $('#filename').val(id);
       $('#modal-secondary').modal("show");
+    });
+    $('button[name="dsnrl"]').click(function(){
+      var id = $('input[name="std_id"]').attr("value");
+      var course = $('#dsnrl').find(":selected").val();
+      alert("Successfuly disenrolled from "+course);
+      $('#dsnrl_crs').val(course);
+      $('#form_dsnrl').submit();
+
+      // $('#filename').val(id);
+      // $('#modal-secondary').modal("show");
     })
+    function print_detail() {
+            var divContents = document.getElementById("printable").innerHTML;
+            var a = window.open('', '');
+            a.document.write('<html>');
+            // a.document.write('<body > <h1>Div contents are <br>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
   </script>
   </body>
+  </html>

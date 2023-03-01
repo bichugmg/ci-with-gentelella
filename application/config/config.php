@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://localhost/portal/';
+$config['base_url'] = 'https://192.168.70.55/portal/';
 
 /*
 |--------------------------------------------------------------------------

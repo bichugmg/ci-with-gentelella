@@ -55,11 +55,26 @@ class App_model extends CI_Model
       return $this->db->insert_id();
       }
 
-      public function enrolledCourses($id)
+
+      public function disenroll($data)
       {
+        $this->db->from('courses');
+        $this->db->where('course',$data['course']);
+        $res=$this->db->get()->result_array();
+        $data['c_id']=$res[0]['c_id'];
+        unset($data['course']);
+        $this->db->set('status','0');
+        $this->db->where($data);
+        $this->db->update('enrollment');
+        return true;
+      }
+
+      public function enrolledCourses($id)
+      { 
+        $qry=['enrollment.std_id'=>$id,'status'=>1];
         $this->db->from('enrollment');
         $this->db->join('courses','courses.c_id = enrollment.c_id');
-        $this->db->where('enrollment.std_id',$id);
+        $this->db->where($qry);
         $this->db->select('courses.course');
         $result=$this->db->get()->result_array();
         return $result;

@@ -259,19 +259,27 @@ class App extends CI_Controller
 
     public function disenrollment()
     {
-        if(empty($this->session->userdata))
+        if(empty($this->session->userdata['user_type']))
             redirect(base_url());
         $head=['sec'=>'student','sub'=>'enr_s'];
-        $out['data']=$this->App_model->enrolledCourses($this->input->post('std_id'));
-        $out['std_id']=$this->input->post('std_id');
-
-
+        $out['data']=$this->App_model->enrolledCourses($this->input->post('sid'));
+        $out['std_id']=$this->input->post('sid');
+        $out['student']=$this->App_model->studentInfo($this->input->post('sid'));
+        // echo json_encode($out);
+        $this->load->view("portal/admin/templates/header",$head);
+        $this->load->view("portal/admin/pages/disenroll",$out);
+        $this->load->view("portal/admin/templates/footer_table");
     }
 
-    
 
 
+    public function disenroll()
+    {
+       $res=$this->App_model->disenroll($this->input->post()); 
+       redirect("/app/enrollment", "refresh");
 
+       
+    }    
 
     /*****************************************************************************************/
     /*************************             View Student     **********************************/
@@ -424,6 +432,9 @@ class App extends CI_Controller
         $this->load->view("portal/admin/templates/footer_table"); 
         
     }
+
+
+    
     public function docs_upload()
     {
         if($this->input->post('upload') != NULL ){ 
@@ -494,5 +505,9 @@ class App extends CI_Controller
         $this->load->view("portal/admin/templates/header",$head);
         $this->load->view("portal/admin/pages/view_doc");
         $this->load->view("portal/admin/templates/footer"); 
+    }
+    public function pageNotFound()
+    {
+        $this->load->view('404');
     }
 }

@@ -3,20 +3,24 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <!-- <h1><b>Add Student</b></h1> -->
-          </div>
+          
+        <div class="col-md-6">
+    &emsp;&emsp; <button class="btn " onclick="window.location.href='<?php echo base_url().'app/enrollment';?>'" style="background: rgb(63, 65, 71);" ><i style="width: 55px;color: white;" class="fa fa-arrow-left"></i></button>
+    </div><br>
+          
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Students List</li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('app/home'); ?>">Home </a></li>
+              <li class="breadcrumb-item active">Students Detail</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
     <section class="content">
+      
         <div class="container-fluid">
+       
           <div class="row">
             <div class="col-12">
               
