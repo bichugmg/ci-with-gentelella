@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | URL to your CodeIgniter root. Typically this will be your base URL,
 | WITH a trailing slash:
 |
+
 |	http://example.com/
 |
 | WARNING: You MUST set this value!
@@ -23,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://192.168.70.55/portal/';
+$config['base_url'] = 'https://localhost/portal/';
 
 /*
 |--------------------------------------------------------------------------

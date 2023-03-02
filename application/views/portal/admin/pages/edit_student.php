@@ -9,7 +9,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url('app/home'); ?>">Home </a></li>
-              <li class="breadcrumb-item active">Student Detail</li>
+              <li class="breadcrumb-item active">Edit Detail</li>
             </ol>
           </div>
         </div>
@@ -22,9 +22,9 @@
       </div>
       <div class="col-md-3"></div>
 
-          <div class="col-sm-1">
-              <button class="btn " id="edit_btn" onclick="editStudent(<?php echo $data[0]['std_id'];?>)" style="background: rgb(63, 65, 71);" ><i style="width: 65px;color: white;" class="fa fa-edit">&nbsp;&nbsp; Edit</i></button>
-          </div>
+          <!-- <div class="col-sm-1">
+              <button class="btn " id="update_std" onclick="updateStudent()" style="background: rgb(63, 65, 71);" ><i style="width: 65px;color: white;" class="fa fa-save">&nbsp;&nbsp; Save</i></button>
+          </div> -->
     </div>
   </div>
     <br>
@@ -37,42 +37,37 @@
               
   
               <div class="card" id="printable">
-                <div class="card-header">
-                  <h3 class="card-title"><?php echo $data[0]['name'];?></h3>
-                </div>
+                
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <table id="ex1" class="table table-bordered table-striped">
+                  <form method="post" action="update_student" name="updatestudent">
+
+                  <table id="ex3" class="table table-bordered table-striped">
                     <thead><tr><td></td><td>
                       </td></tr>
                     </thead>
+                   
                     <tbody>
                             <?php 
                                 
                                 foreach($data[0] as $key=>$value)
-                                    echo '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';
-                                
+                                    {
+                                       if($key=="std_id")
+                                          echo '<tr><td>'.$key.'</td><td><input name="'.$key.'" readonly class="form-control" value="'.$value.'"></td></tr>';
+                                       else
+                                          echo '<tr><td>'.$key.'</td><td><input name="'.$key.'" class="form-control" value="'.$value.'"></td></tr>';
+                                    }
                                     
                             ?>
                             </tbody>
+                        
                             <tfoot></tfoot>
                   
                   </table>
-                  <div class="row">
-                <legend>Courses</legend>
-                <div class="col-md-6">
-              <div class="form-group">
-                <?php
-                echo '<ul>';
-              foreach($enrollment as $a)
-                foreach($a as $key=>$value)
-                echo '<li>'.$value.'</li>';
-              ?></ul>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
+              <button class="btn" type="submit" id="update_std"  style="background: rgb(63, 65, 71);" ><i style="width: 65px;color: white;" class="fa fa-save">&nbsp;&nbsp; Save</i></button>
+                  
+                  </form>
+                  
             <!-- /.col -->
           </div>
           <!-- /.row -->
@@ -81,5 +76,4 @@
       </section>
       <!-- /.content -->
     </div>
-    <form method="post" id="editId" action="edit_student" name="f1"><input hidden name="std_id" id="edit_id"></form>
     <!-- /.content-wrapper -->

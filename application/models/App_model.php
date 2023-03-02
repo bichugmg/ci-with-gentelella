@@ -87,6 +87,16 @@ class App_model extends CI_Model
         return $result;
       }
 
+
+
+      public function updateStudent($id,$data)
+      {
+        $this->db->set($data);
+        $this->db->where('std_id',$id);
+        $this->db->update('student');
+        return true;
+      }
+
       public function getStudents($c_id)    
       {
         $this->db->from('enrollment');

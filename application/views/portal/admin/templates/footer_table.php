@@ -40,7 +40,7 @@
     $(function () {
       $("#example1").DataTable({
       "ordering": false,
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": true, "autoWidth": true,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    
@@ -51,6 +51,13 @@
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["excel", "pdf", "print"]
       }).buttons().container().appendTo('#ex1_wrapper .col-md-6:eq(0)');
+   
+    });
+    $(function () {
+      $("#ex3").DataTable({
+      "ordering": false,
+        "responsive": true, "lengthChange": false, "autoWidth": false,"searching":false, "paging":false, 
+      }).buttons().container().appendTo('#ex3_wrapper .col-md-6:eq(0)');
    
     });
     $('tr[name="clickrow"]').click(function() {
@@ -84,16 +91,15 @@
       // $('#filename').val(id);
       // $('#modal-secondary').modal("show");
     })
-    function print_detail() {
-            var divContents = document.getElementById("printable").innerHTML;
-            var a = window.open('', '');
-            a.document.write('<html>');
-            // a.document.write('<body > <h1>Div contents are <br>');
-            a.document.write(divContents);
-            a.document.write('</body></html>');
-            a.document.close();
-            a.print();
-        }
+    function editStudent(id)
+    {
+      $('input[id="edit_id"]').val(id);
+      $('form[id="editId"]').submit();
+    }
+    function updateStudent()
+    {
+      $('form[name="updatestudent"]').submit();
+    }
   </script>
   </body>
   </html>

@@ -282,7 +282,7 @@ class App extends CI_Controller
     }    
 
     /*****************************************************************************************/
-    /*************************             View Student     **********************************/
+    /*************************             View/Edit Student     **********************************/
     /*****************************************************************************************/
 
 
@@ -324,6 +324,43 @@ class App extends CI_Controller
         $this->load->view("portal/admin/templates/footer_table");
     }
 
+
+
+    public function edit_student()
+    {       
+        if(empty($this->session->userdata))
+            redirect(base_url());
+        if($this->session->userdata['user_type']==2)
+            { 
+                echo "<script>alert('Admin Privilage required !!!');</script>";
+                redirect(base_url());
+            }
+
+        $head=['sec'=>'student','sub'=>'view_s'];
+        $out['data']=$this->App_model->studentInfo($this->input->post('std_id'));
+        $this->load->view("portal/admin/templates/header",$head);
+        $this->load->view("portal/admin/pages/edit_student", $out);
+        $this->load->view("portal/admin/templates/footer_table");
+
+    }
+
+
+    public function update_student()
+    {
+        $postdata=$this->input->post();
+        foreach($postdata as $key=>$value)
+            if($value=="")
+                unset($postdata[$key]);
+
+        $id=$postdata['std_id'];
+        unset($postdata['std_id']);
+        $res=$this->App_model->updateStudent($id,$postdata);
+        if ($res)
+            {
+                echo '<script>alert("Update Successful ...");</script>';
+                redirect(base_url('app/studentlist'));
+            }
+    }
 
     /*****************************************************************************************/
     /*************************           Attendance         **********************************/

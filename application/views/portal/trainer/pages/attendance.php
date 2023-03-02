@@ -93,7 +93,7 @@
                                       // echo '<tr onclick="window.location='."'#'".'>';
                                       foreach($a as $b)
                                         echo '<td>'.$b.'</td>';  
-                                      echo '<td><input class="atcheck" type="checkbox" name="'.$a["std_id"].'"></td></tr>';
+                                      echo '<td><input class="atcheck" style"width:50px;" type="checkbox" name="'.$a["std_id"].'"></td></tr>';
                                   }
                                     ?>
                                     </tbody>
