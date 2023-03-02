@@ -100,6 +100,14 @@
     {
       $('form[name="updatestudent"]').submit();
     }
+    function search()
+     {
+      var month=document.getElementById("month").value;
+      var year=document.getElementById("year").value;
+      $('input[id="month"]').val(month);
+      $('input[id="year"]').val(year);
+      $('form[name="f4"]').submit();
+     }
   </script>
   </body>
   </html>

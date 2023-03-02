@@ -456,6 +456,42 @@ class App extends CI_Controller
 
     }
 
+
+    public function at_overall()
+    {
+        $out=[];
+
+        $head=['sec'=>'attendance','sub'=>'at_ov'];
+        if(!empty($_POST))
+        {
+            $postdata=$this->input->post();
+            $data=$this->App_model->overallAttendance($postdata);
+            foreach($data as $a)
+                foreach($a as $key=>$value)
+                  {
+                    if($key=='c_id')
+                        {
+                            switch($value)
+                            {
+                                case 1: $temp="Classical Dance";break;
+                                case 2: $temp="Classical Music";break;
+                                case 3: $temp="Western Dance";break;
+                                case 4: $temp="Instrumental Music";break;
+                                case 8: $temp="Arts & Crafts";break;
+                            }
+                        }
+                    if($key=='COUNT(a_id)')
+                        $out['data'][$temp]=$value;
+                }
+                    
+        }
+        
+
+        $this->load->view("portal/admin/templates/header",$head);
+        $this->load->view("portal/admin/pages/attendance_overall",$out);
+        $this->load->view("portal/admin/templates/footer_table");      
+    }
+
     /*****************************************************************************************/
     /*****************************         Documents        **********************************/
     /*****************************************************************************************/

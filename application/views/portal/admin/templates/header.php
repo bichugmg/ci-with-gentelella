@@ -270,14 +270,7 @@
                                  <p>View Students</p>
                               </a>
                            </li>
-                           <li class="nav-item">
-                              <a href="
-																									<?php echo base_url('app/mark_attendance');?>" class="nav-link 
-																									<?php if(isset($sub)&&$sub=="att_s")echo 'active'?>">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Attendace</p>
-                              </a>
-                           </li>
+                           
                            <li class="nav-item">
                               <a href="pages/layout/fixed-footer.html" class="nav-link 
 																									<?php if(isset($sub)&&$sub=="fees")echo 'active'?>">
@@ -303,6 +296,39 @@
                               <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Collapsed Sidebar</p>
+                              </a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li class="nav-item">
+                        <a href="#" class="nav-link 
+																							<?php if(isset($sec)&&$sec=="attendance")echo 'active'?>">
+                           <i class="nav-icon fas fa-copy"></i>
+                           <p> Attendance <i class="fas fa-angle-left right"></i>
+                              <span class="badge badge-info right">6</span>
+                           </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                           <li class="nav-item">
+                              <a href="<?php echo base_url('app/at_overall');?> " class="nav-link <?php if(isset($sub)&&$sub=="at_ov")echo 'active'?>">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Overall View</p>
+                              </a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="
+																									<?php echo base_url('app/at_detail_admin');?> " class="nav-link 
+																									<?php if(isset($sub)&&$sub=="at_dv")echo 'active'?>">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Detailed View</p>
+                              </a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="
+																									<?php echo base_url('app/new_admission');?> " class="nav-link 
+																									<?php if(isset($sub)&&$sub=="at_edit")echo 'active'?>">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Edit</p>
                               </a>
                            </li>
                         </ul>

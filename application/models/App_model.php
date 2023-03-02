@@ -149,6 +149,18 @@ class App_model extends CI_Model
         // print_r($postdata);
       }
 
+      public function overallAttendance($data)
+      {
+        $this->db->select('c_id, COUNT(a_id)');
+        $this->db->Where($data);
+        $this->db->group_by('c_id');
+        $res=$this->db->get('attendance')->result_array();
+        return $res;
+            
+      }
+
+
+
       public function upload_doc($data,$doc_id)
       {
         $this->db->set($data);
@@ -170,4 +182,7 @@ class App_model extends CI_Model
         $this->db->update('documents');
       }
 
+
+
+    
 }
