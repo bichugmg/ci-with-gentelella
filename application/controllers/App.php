@@ -465,24 +465,21 @@ class App extends CI_Controller
         if(!empty($_POST))
         {
             $postdata=$this->input->post();
-            $data=$this->App_model->overallAttendance($postdata);
-            foreach($data as $a)
-                foreach($a as $key=>$value)
+            $res=$this->App_model->overallAttendance($postdata);
+            print_r($res); 
+            
+            foreach($res as $key=>$value)
                   {
-                    if($key=='c_id')
-                        {
-                            switch($value)
+                
+                            switch($key)
                             {
-                                case 1: $temp="Classical Dance";break;
-                                case 2: $temp="Classical Music";break;
-                                case 3: $temp="Western Dance";break;
-                                case 4: $temp="Instrumental Music";break;
-                                case 8: $temp="Arts & Crafts";break;
+                                case 1: $out['data']['Classical Dance']=$value;break;
+                                case 2: $out['data']['Classical Music']=$value;break;
+                                case 3: $out['data']['Western Dance']=$value;break;
+                                case 4: $out['data']['Instrumental Music']=$value;break;
+                                case 8: $out['data']['Arts & Crafts']=$value;break;
                             }
                         }
-                    if($key=='COUNT(a_id)')
-                        $out['data'][$temp]=$value;
-                }
                     
         }
         

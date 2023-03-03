@@ -151,12 +151,21 @@ class App_model extends CI_Model
 
       public function overallAttendance($data)
       {
-        $this->db->select('c_id, COUNT(a_id)');
-        $this->db->Where($data);
-        $this->db->group_by('c_id');
-        $res=$this->db->get('attendance')->result_array();
-        return $res;
-            
+        $this->db->select('c_id,course');
+        $res=$this->db->get('courses')->result_array();
+        foreach($res as $a)
+          foreach ($a as $key => $value)
+            if($key=='c_id')
+            {
+              $data['c_id']=$value;
+              $this->db->distinct();
+              $this->db->select('std_id');
+              $this->db->Where($data);  
+              $res=$this->db->get('attendance');
+              $this->db->trans_complete();
+              $out[$value]=$res->num_rows();
+            }
+            return $out;
       }
 
 
